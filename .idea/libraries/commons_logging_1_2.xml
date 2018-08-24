@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="SMSSDK-3.2.1">
+  <library name="commons-logging-1.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/SMSSDK-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

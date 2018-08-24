@@ -10,8 +10,8 @@ import java.util.*
 fun decryptData(sign: String, timestamp: String): Map<String, String> {
     val map = mutableMapOf<String, String>()
     if (sign.isNotEmpty() && timestamp.isNotEmpty()) {
-        var decrypt = DesUtil.decrypt(sign)
-        decrypt = DesUtil.decrypt(decrypt, timestamp)
+        var decrypt = DesUtil.decrypt(sign, timestamp)
+        decrypt = DesUtil.decrypt(decrypt)
         val split = decrypt.split(",")
         for (kvs in split) {
             val kv = kvs.split("=")
@@ -79,5 +79,5 @@ fun isEmptyParams(list: List<String>): Boolean {
  * yyyy-MM-dd HH:mm:ss
  */
 fun getCurrentDate(): String {
-    return  SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+    return SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 }

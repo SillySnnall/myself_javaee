@@ -52,7 +52,7 @@ class CommonTest {
 
     @Test
     fun xxxxxx() {
-        val decrypt = DesUtil.decrypt("O3bjpf/ko1pM+RJ5mtHZjd8R/wBZuej3DFCRoTMs+Q6RTJDO3rEpLJf91Y3oNNKg")
-        println(decrypt)
+        val findByAccount = UserDao().findByAccount("admin")
+      println(findByAccount)
     }
 }
