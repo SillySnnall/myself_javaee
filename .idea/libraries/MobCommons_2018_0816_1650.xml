@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="MobCommons-2018.0816.1650">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/MobCommons-2018.0816.1650.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/MobTools-2018.0817.1730.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SDKWrapper-2018.0801.1824.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SMSSDK-3.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
