@@ -35,7 +35,9 @@ fun <T> successData(list: List<T>, isEncrypt: Boolean = true): String {
  * isEncrypt  是否加密
  */
 fun <T> successData(bean: T, isEncrypt: Boolean = true): String {
-    return successData(Gson().toJson(bean), isEncrypt)
+    var successData = Gson().toJson(bean.toString())
+    successData = successData.replace("\"{", "{").replace("}\"", "}")
+    return successData(successData, isEncrypt)
 }
 
 /**
@@ -44,11 +46,12 @@ fun <T> successData(bean: T, isEncrypt: Boolean = true): String {
  */
 fun successData(str: String, isEncrypt: Boolean = true): String {
     val dataPre = "{\"msg\":0,\"param\":\"msgok\",\"data\":"
-    var data = str
+    var data = str.toString()
     if (data.isEmpty()) data = "\"\""
     else if (!"}".equals(data.substring(data.length - 1, data.length)) || !"]".equals(data.substring(data.length - 1, data.length))) data = "\"$data\""
-    return if (isEncrypt) DesUtil.encrypt("$dataPre$data}")// 加密
-    else "$dataPre$data}"
+    val sendData = "$dataPre$data}"
+    return if (isEncrypt) DesUtil.encrypt(sendData).replace("\r\n", "")// 加密
+    else sendData
 }
 
 
@@ -57,7 +60,7 @@ fun successData(str: String, isEncrypt: Boolean = true): String {
  */
 fun failData(param: String, isEncrypt: Boolean = true, msg: Int = 1): String {
     val dataPre = "{\"msg\":$msg,\"param\":"
-    var data = param
+    var data = param.toString()
     if (data.isEmpty()) data = "\"\""
     else if (!"}".equals(data.substring(data.length - 1, data.length)) || !"]".equals(data.substring(data.length - 1, data.length))) data = "\"$data\""
     return if (isEncrypt) DesUtil.encrypt("$dataPre$data}")// 加密
