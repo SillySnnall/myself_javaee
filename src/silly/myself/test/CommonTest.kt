@@ -5,6 +5,7 @@ import com.github.qcloudsms.httpclient.HTTPException
 import com.google.gson.Gson
 import org.json.JSONException
 import org.junit.Test
+import silly.myself.bean.User
 import silly.myself.dao.UserDao
 import silly.myself.utils.DesUtil
 
@@ -54,5 +55,10 @@ class CommonTest {
     fun xxxxxx() {
         val findByAccount = UserDao().findByAccount("admin")
       println(findByAccount)
+    }
+
+    @Test
+    fun add(){
+        UserDao().addUser(User(account = "admin",password = "admin"))
     }
 }
