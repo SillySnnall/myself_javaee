@@ -3,6 +3,10 @@ package silly.myself.utils
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
+import org.json.JSONException
+import org.json.JSONObject
+import com.google.gson.JsonSyntaxException
+
 
 /**
  * 解密数据
@@ -35,9 +39,7 @@ fun <T> successData(list: List<T>, isEncrypt: Boolean = true): String {
  * isEncrypt  是否加密
  */
 fun <T> successData(bean: T, isEncrypt: Boolean = true): String {
-    var successData = Gson().toJson(bean.toString())
-    successData = successData.replace("\"{", "{").replace("}\"", "}")
-    return successData(successData, isEncrypt)
+    return successData(bean.toString(), isEncrypt)
 }
 
 /**
@@ -46,9 +48,12 @@ fun <T> successData(bean: T, isEncrypt: Boolean = true): String {
  */
 fun successData(str: String, isEncrypt: Boolean = true): String {
     val dataPre = "{\"msg\":0,\"param\":\"msgok\",\"data\":"
-    var data = str.toString()
-    if (data.isEmpty()) data = "\"\""
-    else if (!"}".equals(data.substring(data.length - 1, data.length)) || !"]".equals(data.substring(data.length - 1, data.length))) data = "\"$data\""
+    var data = str
+    if (data.isEmpty()) {
+        data = "\"\""
+    } else if (!isJSON(data)) {
+        data = "\"$data\""
+    }
     val sendData = "$dataPre$data}"
     return if (isEncrypt) DesUtil.encrypt(sendData).replace("\r\n", "")// 加密
     else sendData
@@ -83,4 +88,19 @@ fun isEmptyParams(list: List<String>): Boolean {
  */
 fun getCurrentDate(): String {
     return SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+}
+
+
+/**
+ * 判断是否是json
+ * @param jsonInString
+ * @return
+ */
+fun isJSON(jsonInString: String): Boolean {
+    return try {
+        Gson().fromJson(jsonInString, Any::class.java)
+        true
+    } catch (ex: JsonSyntaxException) {
+        false
+    }
 }

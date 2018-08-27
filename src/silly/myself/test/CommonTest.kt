@@ -33,7 +33,7 @@ class CommonTest {
     fun test() {
 
         try {
-            val params = arrayOf("5678")//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
+            val params = arrayOf("5678","30")//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
             val ssender = SmsSingleSender(appid, appkey)
             val result = ssender.sendWithParam("86", phoneNumbers[0],
                     templateId, params, smsSign, "", "")  // 签名参数未提供或者为空时，会使用默认签名发送短信
@@ -59,6 +59,19 @@ class CommonTest {
 
     @Test
     fun add(){
-        UserDao().addUser(User(account = "admin",password = "admin"))
+        UserDao().addUser(User(account = "123",password = "123"))
     }
+
+
+    @Test
+    fun dsadfa(){
+        aa("dsadaf")
+    }
+
+
+    fun aa(str: String){
+        var dsaf = str
+        println(dsaf)
+    }
+
 }
